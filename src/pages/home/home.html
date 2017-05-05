@@ -1,7 +1,7 @@
 ﻿<ion-header>
   <ion-navbar>
     <ion-title>
-      Calcolo Media
+      Voto Laurea
       <ion-icon style="float: right" name="settings" (click)="vaiImpostazioni()"></ion-icon>
     </ion-title>
   </ion-navbar>
@@ -50,7 +50,7 @@
         <ion-icon style="margin-right: 10px; float: right" name="create" (click)="modificaMateria(materia)"></ion-icon>
         <p id="{{materia.id}}"><b>{{materia.nome}}</b></p>
 
-        <p>VOTO {{materia.voto}} - CFU {{materia.cfu}}</p>
+        <p>VOTO <b>{{materia.voto}}</b> - CFU <b>{{materia.cfu}}</b></p>
 
       </div>
 

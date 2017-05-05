@@ -211,7 +211,7 @@ export class HomePage {
   applicaModificaMateria(id) {
       for (let materia of this.materie) {
           if (materia.id == id) {
-              materia.nome = this.nome;
+              materia.nome = this.nome.toUpperCase();
               materia.voto = this.voto;
               materia.cfu = this.cfu;
           }
@@ -225,7 +225,7 @@ export class HomePage {
       this.voto = null
       this.modifica = !this.modifica;
       this.mostraForm = !this.mostraForm;
-      this.modifica = !this.modifica;
+
   }
 
   chiediConfermaEliminazione(id) {

@@ -44,7 +44,7 @@ export class SettingsPage {
             this.aggiungiAVotoFinale = val;
         });
         this.storage.get("massimoLodiFinale").then((val) => {
-            this.massimoLodiFinale = val;
+            this.massimoLodiFinale = val ? val : 0;
         });
         this.storage.get("lodeVotoEsame").then((val) => {
             this.lodeVotoEsame = val;
