@@ -1,0 +1,105 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Impostazioni
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+
+
+    <ion-item-divider color="light">
+      Valore Lode
+    </ion-item-divider>
+
+
+    <ion-item>
+      <ion-label>Su Voto Finale</ion-label>
+      <ion-toggle [(ngModel)]="lodeVotoFinale"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="lodeVotoFinale">
+      <ion-label>+</ion-label>
+      <ion-input type="number" [(ngModel)]="aggiungiAVotoFinale"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="lodeVotoFinale">
+      <ion-label>Massimo N. Lodi</ion-label>
+      <ion-input type="number" [(ngModel)]="massimoLodiFinale"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Su Voto Esame</ion-label>
+      <ion-toggle [(ngModel)]="lodeVotoEsame" ></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="lodeVotoEsame">
+      <ion-label>+</ion-label>
+      <ion-input type="number" [(ngModel)]="aggiungiAVotoEsame"></ion-input>
+    </ion-item>
+    <!-- <ion-item *ngIf="lodeVotoEsame">
+      <ion-label>Massimo N. Lodi</ion-label>
+      <ion-input type="number" [(ngModel)]="massimoLodiEsame"></ion-input>
+    </ion-item>
+    -->
+
+
+
+    <ion-item-divider color="light">
+      Esclusione Esami da Calcolo Media
+    </ion-item-divider>
+
+
+
+    <ion-item *ngIf="!sceltaEsameManuale && false">
+      <ion-label>Con Voto Più Basso</ion-label>
+      <ion-toggle [(ngModel)]="eliminazioneVotoBasso"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="eliminazioneVotoBasso && !sceltaEsameManuale && false">
+      <ion-label>N. </ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="!sceltaEsameManuale && false">
+      <ion-label>Con Voto Più Alto</ion-label>
+      <ion-toggle [(ngModel)]="eliminazioneVotoAlto"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="eliminazioneVotoAlto && !sceltaEsameManuale && false">
+      <ion-label>N. </ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Scelta Manuale</ion-label>
+      <ion-toggle [(ngModel)]="sceltaEsameManuale"></ion-toggle>
+    </ion-item>
+    <ion-list *ngIf="sceltaEsameManuale">
+      <ion-item *ngFor="let materia of params.get('home').materie; let i = index" >
+        <ion-label><p style="font-size: 80%;">{{materia.nome}}</p></ion-label>
+        <ion-checkbox color="blue"  [(ngModel)]="esami[i]"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-item-group>
+
+
+
+  <ion-item-divider color="light">
+    CFU Totali
+  </ion-item-divider>
+
+
+
+  <ion-item >
+    <ion-input type="number" [(ngModel)]="cfuMassimi" ></ion-input>
+  </ion-item>
+  <br/>
+  <button color="danger" ion-button block icon-left (click)="save()">
+    <ion-icon name="checkmark"></ion-icon>
+    Salva Impostazioni
+  </button>
+  <button color="default" ion-button block icon-left (click)="goToCredits()">
+    <ion-icon name="information-circle"></ion-icon>
+    Info e Crediti
+  </button>
+
+
+</ion-content>

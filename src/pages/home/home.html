@@ -1,0 +1,108 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Calcolo Media
+      <ion-icon style="float: right" name="settings" (click)="vaiImpostazioni()"></ion-icon>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="home" padding>
+
+  <ion-fab right top #fab>
+    <button (click)="toggleAggiuntaMateria(fab)" ion-fab >
+      <ion-icon *ngIf="!mostraForm" name ="add"></ion-icon>
+      <ion-icon *ngIf="mostraForm" name="close"></ion-icon>
+
+    </button>
+
+
+</ion-fab>
+
+
+  <ion-card>
+    <div ion-item>
+      <p>
+        <b>MEDIA ARITMETICA: {{mediaAritmetica ? mediaAritmetica : 0}}</b>
+      </p>
+      <p>
+        <b>MEDIA PESATA: {{mediaPesata ? mediaPesata : 0}}</b>
+      </p>
+      <p>
+        <b>VOTO DI LAUREA: {{votoLaurea ? votoLaurea : 0}}/{{settings.votoLaureaMassimo}}</b>
+      </p>
+      <p>
+        <b>CFU TOTALI: {{cfuTotali}}/{{settings.cfuMassimi}}</b>
+      </p>
+    </div>
+  </ion-card>
+
+  <div class="separator" ion-item color="light">
+    <ion-icon name="ios-arrow-down" style="float:right;"></ion-icon>
+     <b>ESAMI SUPERATI</b>
+  </div>
+
+
+    <ion-card  class="materia" *ngFor="let materia of materie">
+
+      <div ion-item>
+        <ion-icon style="float: right" name="close" (click)="chiediConfermaEliminazione(materia.id)"></ion-icon>
+        <ion-icon style="margin-right: 10px; float: right" name="create" (click)="modificaMateria(materia)"></ion-icon>
+        <p id="{{materia.id}}"><b>{{materia.nome}}</b></p>
+
+        <p>VOTO {{materia.voto}} - CFU {{materia.cfu}}</p>
+
+      </div>
+
+
+    </ion-card>
+
+
+
+
+
+</ion-content>
+
+<ion-footer *ngIf="mostraForm" [@fadeInOut]>
+  <ion-toolbar>
+    <ion-list>
+
+      <ion-item>
+        <ion-label>Nome Materia</ion-label>
+        <ion-input type="text" [(ngModel)]="nome"></ion-input>
+      </ion-item>
+      <ion-item id="cfu">
+        <ion-label>CFU Materia</ion-label>
+        <ion-input type="number" min="1" [(ngModel)]="cfu"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label id="voto">Voto Materia</ion-label>
+        <ion-select [(ngModel)]="voto">
+          <ion-option value="Idoneo">Idoneo</ion-option>
+          <ion-option value="18">18</ion-option>
+          <ion-option value="19">19</ion-option>
+          <ion-option value="20">20</ion-option>
+          <ion-option value="21">21</ion-option>
+          <ion-option value="22">22</ion-option>
+          <ion-option value="23">23</ion-option>
+          <ion-option value="24">24</ion-option>
+          <ion-option value="25">25</ion-option>
+          <ion-option value="26">26</ion-option>
+          <ion-option value="27">27</ion-option>
+          <ion-option value="28">28</ion-option>
+          <ion-option value="29">29</ion-option>
+          <ion-option value="30">30</ion-option>
+          <ion-option value="30 e Lode">30 e Lode</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <button style="{margin-top: -10px !important;}" color="default" ion-button block icon-left (click)="aggiungiMateria()" *ngIf="!modifica">
+      <ion-icon name="add"></ion-icon>
+      Aggiungi Materia
+    </button>
+    <button color="default" ion-button block icon-left (click)="applicaModificaMateria(id)" *ngIf="modifica">
+      <ion-icon name="add"></ion-icon>
+      Aggiungi Modifiche
+    </button>
+  </ion-toolbar>
+</ion-footer>
